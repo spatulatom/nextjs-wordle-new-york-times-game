@@ -5,6 +5,17 @@ export default function Game() {
   const [solution, setSolution] = useState('');
 //   why nulls not empty strings in the first place 
   const [guesses, setGuesses] = useState(Array(6).fill(null));
+  const [currentGuess, setCurrentGuess] = useState('')
+
+  useEffect(()=>{
+    const handleType = (event:any)=>{
+      setCurrentGuess(oldGuess => oldGuess + event.key)
+    }
+    window.addEventListener('keydown', handleType);
+    
+    // on onmount:
+    return ()=> window.removeEventListener('keydown', handleType)
+  },[])
 
   const fetchWord = async () => {
     const response = await fetch('api/hello');
@@ -29,6 +40,7 @@ export default function Game() {
       <p className="text-white" onClick={lklk}>
         Click
       </p>
+      <p>{currentGuess}</p>
       <h2 className='mb-4'>{solution}</h2>
       {guesses.map((guess) => {
         return (
