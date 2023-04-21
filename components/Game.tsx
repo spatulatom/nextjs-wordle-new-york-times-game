@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 
 export default function Game() {
   const [solution, setSolution] = useState('');
+//   why nulls not empty strings in the first place 
   const [guesses, setGuesses] = useState(Array(6).fill(null));
 
   const fetchWord = async () => {
@@ -33,7 +34,8 @@ export default function Game() {
         return (
           // https://sebhastian.com/javascript-double-question-mark/?utm_content=cmp-truehttps://sebhastian.com/javascript-double-question-mark/?utm_content=cmp-true
           // Nullish Coalescing Operator
-          <Line guess={guess ?? ''} />
+          // if guess is null it will be turned into empty string '' on props: guess?? ''
+          <Line guess={guess?? ''} />
         );
       })}
     </>
@@ -45,10 +47,12 @@ type props = {
 
 function Line({ guess }: props) {
   const WORD_LENGTH = 5;
+//   this will be array of 5 divs and since its array of div no need to map over 
+// it - remeber map() accutally returns an array of JSX elements
   const tiles = [];
 
-  // if guess is null it will be turned into empty string '' so
-  // we need rather for loop then map() here
+  // if guess is null it will be turned into empty string '' on props: guess?? ''so
+  // for loop can loop through ''[0], ''[1]... and not null[0], null[1]
   for (let i = 0; i < WORD_LENGTH; i++) {
     const char = guess[i];
     tiles.push(
