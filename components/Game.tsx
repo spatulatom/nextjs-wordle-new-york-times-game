@@ -13,6 +13,7 @@ export default function Game() {
   const [showModal, setShowModal] = useState(false);
 
   const buttonRef:any = useRef(null)
+  const keyboardRef:any =  useRef(null)
 
   useEffect(() => {
     const handleType = (event: any) => {
@@ -87,8 +88,11 @@ export default function Game() {
     setGameOver(false)
     fetchWord()
     buttonRef.current.blur();
+}
 
-  }
+const handleKeyboard =()=>{
+  keyboardRef.current.focus()
+}
   return (
     <>
       <p className="text-white" onClick={lklk}>
@@ -111,6 +115,8 @@ export default function Game() {
           />
         );
       })}
+<button onClick={handleKeyboard}>Show Keyboard</button>
+
       <button
     ref={buttonRef}
       onClick={startNewGame}
@@ -124,6 +130,10 @@ export default function Game() {
         How To Play
       </button>
       {showModal && <Modal modalHandler={modalHandler} />}
+      <input className='mt-8'
+      ref={keyboardRef}
+      ></input>
+
     </>
   );
 }

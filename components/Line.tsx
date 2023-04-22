@@ -13,6 +13,7 @@ type props = {
     //   this will be array of 5 divs and since its array of div no need to map over
     // it - remeber map() accutally returns an array of JSX elements
     const tiles = [];
+    let keyboard;
   
     // if guess is null it will be turned into empty string '' on props: guess?? ''so
     // for loop can loop through ''[0], ''[1]... and not null[0], null[1]
@@ -35,11 +36,15 @@ type props = {
         }
       }
 
+      
+
       const handleFocus = ()=>{
         refrence.current.focus() 
+        console.log('focus')
+        keyboard = <p className="w-32 bg-pink-500">jkjj</p>
       }
     
-      console.log('REFRENCE', refrence.current );
+      
       
       
       tiles.push(
@@ -55,5 +60,8 @@ type props = {
       );
     }
   
-    return <div className="flex gap-2 mb-3">{tiles}</div>;
+    return <>
+    <div className="flex gap-2 mb-3">{tiles}</div>
+    
+    </>
   }
