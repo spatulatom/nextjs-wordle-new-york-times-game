@@ -27,6 +27,7 @@ export default function Game() {
           return;
         }
         const newGuesses = [...guesses];
+        // The findIndex() method returns the index of THE FIRST element in an array that satisfies the provided testing function
         newGuesses[guesses.findIndex((element) => element == null)] =
           currentGuess;
         setGuesses(newGuesses);
