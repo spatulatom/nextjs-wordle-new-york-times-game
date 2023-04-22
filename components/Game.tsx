@@ -9,7 +9,7 @@ export default function Game() {
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
-  const [showModal, setShowModal] = useState(false)
+  const [showModal, setShowModal] = useState(false);
 
   useEffect(() => {
     const handleType = (event: any) => {
@@ -41,16 +41,15 @@ export default function Game() {
         return;
       }
 
-// to prevent other keys than letters
-const isLetter = event.key.match(/^[a-z]{1}$/) != null
-if(isLetter){
-
-      // the array elemments are uppercase so we need to change key events as well
-      // othwerwise styling comparison in Line component is not working a === A is false
-      setCurrentGuess((oldGuess) => oldGuess + event.key.toUpperCase());}
+      // to prevent other keys than letters
+      const isLetter = event.key.match(/^[a-z]{1}$/) != null;
+      if (isLetter) {
+        // the array elemments are uppercase so we need to change key events as well
+        // othwerwise styling comparison in Line component is not working a === A is false
+        setCurrentGuess((oldGuess) => oldGuess + event.key.toUpperCase());
+      }
     };
 
-   
     window.addEventListener('keydown', handleType);
 
     // on onmount:
@@ -77,14 +76,14 @@ if(isLetter){
 
   //rules of the game modal handler
   const modalHandler = () => {
-    setShowModal(prev=> !prev)
-  } 
+    setShowModal((prev) => !prev);
+  };
   return (
     <>
       <p className="text-white" onClick={lklk}>
         Click
       </p>
-      {gameOver?<p>YOU WON! The solution word is: {solution}</p>: ''}
+      {gameOver ? <p>YOU WON! The solution word is: {solution}</p> : ''}
       <h2 className="mb-4">{solution}</h2>
       {guesses.map((guess, i) => {
         const isCurrentGuess =
@@ -96,14 +95,21 @@ if(isLetter){
           <Line
             guess={isCurrentGuess ? currentGuess : guess ?? ''}
             // isGuessSubmitted={!isCurrentGuess && guess != null}
-            isGuessSubmitted={guess!=null}
+            isGuessSubmitted={guess != null}
             solution={solution}
           />
         );
       })}
-      <button className='p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 '>Start a new game</button>
-      <button onClick={modalHandler} className='p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 '>Rules of the game</button>
-      {showModal && <Modal modalHandler={modalHandler}/>}
+      <button className="p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 ">
+        Start a new game
+      </button>
+      <button
+        onClick={modalHandler}
+        className="p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 "
+      >
+        How To Play
+      </button>
+      {showModal && <Modal modalHandler={modalHandler} />}
     </>
   );
 }
