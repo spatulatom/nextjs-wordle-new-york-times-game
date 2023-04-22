@@ -1,7 +1,8 @@
 import React from 'react';
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useRef } from 'react';
 import Line from './Line';
 import Modal from './Modal';
+
 
 export default function Game() {
   const [solution, setSolution] = useState('');
@@ -10,6 +11,8 @@ export default function Game() {
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
+
+  const buttonRef:any = useRef(null)
 
   useEffect(() => {
     const handleType = (event: any) => {
@@ -79,6 +82,11 @@ export default function Game() {
     setShowModal((prev) => !prev);
   };
   const startNewGame = () =>{
+    setCurrentGuess('')
+    setGuesses(Array(6).fill(null))
+    setGameOver(false)
+    fetchWord()
+    buttonRef.current.blur();
 
   }
   return (
@@ -104,8 +112,9 @@ export default function Game() {
         );
       })}
       <button
+    ref={buttonRef}
       onClick={startNewGame}
-       className="p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 ">
+       className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 ">
         Start a new game
       </button>
       <button

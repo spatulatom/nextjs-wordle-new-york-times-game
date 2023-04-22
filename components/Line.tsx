@@ -1,3 +1,6 @@
+import { useRef } from "react";
+
+
 type props = {
     guess: any;
     isGuessSubmitted: any;
@@ -5,6 +8,7 @@ type props = {
   };
   
   export default function Line({ guess, isGuessSubmitted, solution }: props) {
+    const refrence:any = useRef(null)
     const WORD_LENGTH = 5;
     //   this will be array of 5 divs and since its array of div no need to map over
     // it - remeber map() accutally returns an array of JSX elements
@@ -14,8 +18,9 @@ type props = {
     // for loop can loop through ''[0], ''[1]... and not null[0], null[1]
     for (let i = 0; i < WORD_LENGTH; i++) {
       const char = guess[i];
+      
       // console.log('hrtr', char) // when char ='' this code will evalute to undefinded
-      console.log('soltution', solution, char);
+      
       let tile = 'bg-black';
       if (isGuessSubmitted) {
         if (char === solution[i]) {
@@ -29,10 +34,16 @@ type props = {
           tile = 'bg-gray-400';
         }
       }
+      refrence.current 
+      console.log('REFRENCE', refrence.current );
+      
+      
       tiles.push(
         <div
+        ref={refrence}
           key={i}
           className={`${tile} w-16 h-16 border flex justify-center items-center uppercase text-xl`}
+          tabIndex={i}
         >
           {char}
         </div>
