@@ -1,6 +1,7 @@
 import React from 'react';
 import { useEffect, useState } from 'react';
 import Line from './Line';
+import Modal from './Modal';
 
 export default function Game() {
   const [solution, setSolution] = useState('');
@@ -8,6 +9,7 @@ export default function Game() {
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
+  const [showModal, setShowModal] = useState(false)
 
   useEffect(() => {
     const handleType = (event: any) => {
@@ -72,6 +74,11 @@ if(isLetter){
   const lklk = () => {
     fetchWord();
   };
+
+  //rules of the game modal handler
+  const modalHandler = () => {
+    setShowModal(prev=> !prev)
+  } 
   return (
     <>
       <p className="text-white" onClick={lklk}>
@@ -94,7 +101,9 @@ if(isLetter){
           />
         );
       })}
-      <button className='p-2 mt-4 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 '>Start a new game</button>
+      <button className='p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 '>Start a new game</button>
+      <button onClick={modalHandler} className='p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 '>Rules of the game</button>
+      {showModal && <Modal modalHandler={modalHandler}/>}
     </>
   );
 }
