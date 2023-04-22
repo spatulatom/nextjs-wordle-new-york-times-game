@@ -78,6 +78,9 @@ export default function Game() {
   const modalHandler = () => {
     setShowModal((prev) => !prev);
   };
+  const startNewGame = () =>{
+
+  }
   return (
     <>
       <p className="text-white" onClick={lklk}>
@@ -100,7 +103,9 @@ export default function Game() {
           />
         );
       })}
-      <button className="p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 ">
+      <button
+      onClick={startNewGame}
+       className="p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 ">
         Start a new game
       </button>
       <button
