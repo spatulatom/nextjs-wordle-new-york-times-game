@@ -3,19 +3,43 @@ import { useEffect, useState } from 'react';
 
 export default function Game() {
   const [solution, setSolution] = useState('');
-//   why nulls not empty strings in the first place 
+  //   why nulls not empty strings in the first place
   const [guesses, setGuesses] = useState(Array(6).fill(null));
-  const [currentGuess, setCurrentGuess] = useState('')
+  const [currentGuess, setCurrentGuess] = useState('');
+  const [gameOver, setGameOver] = useState(false);
 
-  useEffect(()=>{
-    const handleType = (event:any)=>{
-      setCurrentGuess(oldGuess => oldGuess + event.key)
-    }
+  useEffect(() => {
+    const handleType = (event: any) => {
+      if (gameOver) {
+        return;
+      }
+
+      if (event.key === 'Enter') {
+        if (currentGuess.length !== 5) {
+          return;
+        }
+        const isCorrect = solution === currentGuess;
+        if (isCorrect) {
+          setGameOver(true);
+        }
+      }
+      if (event.key === 'Backspace') {
+        setCurrentGuess(currentGuess.slice(0, -1));
+        return;
+      }
+
+      if (currentGuess.length >= 5) {
+        return;
+      }
+     
+
+      setCurrentGuess((oldGuess) => oldGuess + event.key);
+    };
     window.addEventListener('keydown', handleType);
-    
+
     // on onmount:
-    return ()=> window.removeEventListener('keydown', handleType)
-  },[])
+    return () => window.removeEventListener('keydown', handleType);
+  }, [currentGuess]);
 
   const fetchWord = async () => {
     const response = await fetch('api/hello');
@@ -36,18 +60,19 @@ export default function Game() {
   };
   return (
     <>
-    
       <p className="text-white" onClick={lklk}>
         Click
       </p>
       <p>{currentGuess}</p>
-      <h2 className='mb-4'>{solution}</h2>
-      {guesses.map((guess) => {
+      <h2 className="mb-4">{solution}</h2>
+      {guesses.map((guess, i) => {
+        const isCurrentGuess =
+          i === guesses.findIndex((element) => element == null); // this will evelute to true or false
         return (
           // https://sebhastian.com/javascript-double-question-mark/?utm_content=cmp-truehttps://sebhastian.com/javascript-double-question-mark/?utm_content=cmp-true
           // Nullish Coalescing Operator
           // if guess is null it will be turned into empty string '' on props: guess?? ''
-          <Line guess={guess?? ''} />
+          <Line guess={isCurrentGuess ? currentGuess : guess ?? ''} />
         );
       })}
     </>
@@ -59,20 +84,24 @@ type props = {
 
 function Line({ guess }: props) {
   const WORD_LENGTH = 5;
-//   this will be array of 5 divs and since its array of div no need to map over 
-// it - remeber map() accutally returns an array of JSX elements
+  //   this will be array of 5 divs and since its array of div no need to map over
+  // it - remeber map() accutally returns an array of JSX elements
   const tiles = [];
 
   // if guess is null it will be turned into empty string '' on props: guess?? ''so
   // for loop can loop through ''[0], ''[1]... and not null[0], null[1]
   for (let i = 0; i < WORD_LENGTH; i++) {
     const char = guess[i];
+    // console.log('hrtr', char) // when char ='' this code will evalute to undefinded
     tiles.push(
-      <div key={i} className="w-16 h-16 border">
+      <div
+        key={i}
+        className="w-16 h-16 border flex justify-center items-center uppercase text-xl"
+      >
         {char}
       </div>
     );
   }
-  console.log('tiles', tiles);
+
   return <div className="flex gap-2 mb-3">{tiles}</div>;
 }
