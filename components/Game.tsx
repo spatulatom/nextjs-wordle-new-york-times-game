@@ -11,6 +11,7 @@ export default function Game() {
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
+  const [showTheSolution, setShowTheSolution] = useState(false)
 
   const buttonRef:any = useRef(null)
   const keyboardRef:any =  useRef(null)
@@ -57,7 +58,7 @@ export default function Game() {
     window.addEventListener('keydown', handleType);
 
     // on onmount:
-    return () => window.removeEventListener('keyup', handleType);
+    return () => window.removeEventListener('keydown', handleType);
   }, [currentGuess]);
 
   const fetchWord = async () => {
@@ -93,13 +94,19 @@ export default function Game() {
 const handleKeyboard =()=>{
   keyboardRef.current.focus()
 }
+
+const handleShowTheSolution = ()=>{
+  setShowTheSolution(prev=> true )
+  setTimeout(()=>setShowTheSolution(false), 200)
+}
   return (
     <>
-      <p className="text-white" onClick={lklk}>
+      {/* <p className="text-white" onClick={lklk}>
         Click
-      </p>
-      {gameOver ? <p>YOU WON! The solution word is: {solution}</p> : ''}
-      <h2 className="mb-4">{solution}</h2>
+      </p> */}
+      {gameOver ? <p className='p-4'>CONGRATULATION, YOU WON!! The solution word is: {solution}</p> : ''}
+      <h2 onClick={handleShowTheSolution} className="mb-4 p-2 rounded bg-green-800 transition hover:bg-green-600">Click here for solution:</h2>
+      {showTheSolution?<p className='py-4'>{solution}</p>:null}
       {guesses.map((guess, i) => {
         const isCurrentGuess =
           i === guesses.findIndex((element) => element == null); // this will evelute to true or false
