@@ -34,12 +34,17 @@ type props = {
           tile = 'bg-gray-400';
         }
       }
-      refrence.current 
+
+      const handleFocus = ()=>{
+        refrence.current.focus() 
+      }
+    
       console.log('REFRENCE', refrence.current );
       
       
       tiles.push(
         <div
+        onClick={handleFocus}
         ref={refrence}
           key={i}
           className={`${tile} w-16 h-16 border flex justify-center items-center uppercase text-xl`}
