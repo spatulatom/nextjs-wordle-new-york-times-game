@@ -57,7 +57,7 @@ export default function Game() {
     window.addEventListener('keydown', handleType);
 
     // on onmount:
-    return () => window.removeEventListener('keydown', handleType);
+    return () => window.removeEventListener('keyup', handleType);
   }, [currentGuess]);
 
   const fetchWord = async () => {
@@ -115,7 +115,7 @@ const handleKeyboard =()=>{
           />
         );
       })}
-<button onClick={handleKeyboard}>Show Keyboard</button>
+{/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
 
       <button
     ref={buttonRef}
@@ -130,9 +130,9 @@ const handleKeyboard =()=>{
         How To Play
       </button>
       {showModal && <Modal modalHandler={modalHandler} />}
-      <input className='mt-8'
+      {/* <input className='mt-8'
       ref={keyboardRef}
-      ></input>
+      ></input> */}
 
     </>
   );
