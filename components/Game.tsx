@@ -67,7 +67,7 @@ export default function Game() {
       if (isLetter) {
         // the array elemments are uppercase so we need to change key events as well
         // othwerwise styling comparison in Line component is not working a === A is false
-        setCurrentGuess((oldGuess) => oldGuess + event.key.toUpperCase());
+        setCurrentGuess((oldGuess) => oldGuess + event.key);
       }
     };
 
@@ -160,7 +160,7 @@ export default function Game() {
     if (currentGuess.length >= 5) {
       return;
     }
-    const isLetter = button.match(/^[A-Z]{1}$/) != null;
+    const isLetter = button.match(/^[a-z]{1}$/) != null;
     if(isLetter){
       setCurrentGuess(prev=>prev+button)
     }
@@ -199,7 +199,7 @@ export default function Game() {
       {/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
       <div className="text-black ">
         <Keyboard
-          layoutName="shift"
+          layoutName="default"
           onChange={onChange}
           onKeyPress={onKeyPress}
         />
