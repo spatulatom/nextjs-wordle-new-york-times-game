@@ -14,8 +14,8 @@ export default function Game() {
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showTheSolution, setShowTheSolution] = useState(false);
-  const [allWords, setAllWords] = useState([])
-  const [typoError, setTypoError] = useState(false)
+  const [allWords, setAllWords] = useState([]);
+  const [typoError, setTypoError] = useState(false);
 
   const buttonRef: any = useRef(null);
   const keyboardRef: any = useRef(null);
@@ -31,15 +31,15 @@ export default function Game() {
           return;
         }
 
-     const isWord =    allWords.some((el)=> el==currentGuess)
-     if(!isWord){
-      setTypoError(true)
-      setTimeout(()=>{
-        setTypoError(false)
-      }, 2000)
-      return
-     }
-     
+        const isWord = allWords.some((el) => el == currentGuess);
+        if (!isWord) {
+          setTypoError(true);
+          setTimeout(() => {
+            setTypoError(false);
+          }, 2000);
+          return;
+        }
+
         const newGuesses = [...guesses];
         // The findIndex() method returns the index of THEelement in an array that satisfies the provided testing function
         newGuesses[guesses.findIndex((element) => element == null)] =
@@ -52,7 +52,7 @@ export default function Game() {
           setGameOver(true);
         }
       }
-      
+
       if (event.key === 'Backspace') {
         setCurrentGuess(currentGuess.slice(0, -1));
         return;
@@ -80,7 +80,7 @@ export default function Game() {
   const fetchWord = async () => {
     const response = await fetch('api/hello');
     const words = await response.json();
-    setAllWords(words.words)
+    setAllWords(words.words);
     // Math.random gives us number 0 to 1, multipy by how many word there are, and floor that
     // 2.5 would be 2
     const randomWord =
@@ -123,7 +123,7 @@ export default function Game() {
 
   const onKeyPress = (button: any) => {
     console.log('Button pressed', button);
-  
+
     if (gameOver) {
       return;
     }
@@ -131,13 +131,13 @@ export default function Game() {
       if (currentGuess.length !== 5) {
         return;
       }
-      const isWord =    allWords.some((el)=> el==currentGuess)
-      if(!isWord){
-       setTypoError(true)
-       setTimeout(()=>{
-         setTypoError(false)
-       }, 2000)
-       return
+      const isWord = allWords.some((el) => el == currentGuess);
+      if (!isWord) {
+        setTypoError(true);
+        setTimeout(() => {
+          setTypoError(false);
+        }, 2000);
+        return;
       }
 
       const newGuesses = [...guesses];
@@ -151,7 +151,6 @@ export default function Game() {
       if (isCorrect) {
         setGameOver(true);
       }
-     
     }
     if (button === '{bksp}') {
       setCurrentGuess(currentGuess.slice(0, -1));
@@ -161,11 +160,9 @@ export default function Game() {
       return;
     }
     const isLetter = button.match(/^[a-z-żźćńółęąś]{1}$/) != null;
-    if(isLetter){
-      setCurrentGuess(prev=>prev+button)
+    if (isLetter) {
+      setCurrentGuess((prev) => prev + button);
     }
-
-    
   };
 
   return (
@@ -180,7 +177,7 @@ export default function Game() {
       ) : (
         ''
       )}
-     
+
       {guesses.map((guess, i) => {
         const isCurrentGuess =
           i === guesses.findIndex((element) => element == null); // this will evelute to true or false
@@ -204,19 +201,18 @@ export default function Game() {
           onKeyPress={onKeyPress}
           layout={{
             default: [
-              " ą ć ę ł ń ó ś ź ż ",
-              " q w e r t y u i o p ",
-              " a s d f g h j k ",
-              " z x c v b n m l ",
-              "{bksp} {enter}"
+              'q w e r t y u i o p',
+              'a s d f g h j k',
+              'z x c v b n m l',
+              '{enter} {bksp}',
             ],
             shift: [
-              "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
-              "{tab} Q W E R T Y U I O P { } |",
+              '~ ! @ # $ % ^ & * ( ) _ + {bksp}',
+              '{tab} Q W E R T Y U I O P { } |',
               '{lock} A S D F G H J K L : " {enter}',
-              "{shift} Z X C V B N M < > ? {shift}",
-              ".com @ {space}"
-            ]
+              '{shift} Z X C V B N M < > ? {shift}',
+              '.com @ {space}',
+            ],
           }}
         />
       </div>
@@ -243,7 +239,7 @@ export default function Game() {
       </h2>
       {showTheSolution ? <p className="py-4">{solution}</p> : null}
 
-      {typoError&&<TypoError currentGuess={currentGuess}/>}
+      {typoError && <TypoError currentGuess={currentGuess} />}
 
       {/* <input className='mt-8'
       ref={keyboardRef}
