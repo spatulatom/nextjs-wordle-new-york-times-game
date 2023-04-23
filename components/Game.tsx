@@ -197,7 +197,7 @@ export default function Game() {
         );
       })}
       {/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
-      <div className="text-black ">
+      <div className="text-black mt-6">
         <Keyboard
           layoutName="default"
           onChange={onChange}
