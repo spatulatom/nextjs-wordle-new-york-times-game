@@ -2,7 +2,8 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import Line from './Line';
 import Modal from './Modal';
-
+import Keyboard from 'react-simple-keyboard';
+import 'react-simple-keyboard/build/css/index.css';
 
 export default function Game() {
   const [solution, setSolution] = useState('');
@@ -11,10 +12,10 @@ export default function Game() {
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
-  const [showTheSolution, setShowTheSolution] = useState(false)
+  const [showTheSolution, setShowTheSolution] = useState(false);
 
-  const buttonRef:any = useRef(null)
-  const keyboardRef:any =  useRef(null)
+  const buttonRef: any = useRef(null);
+  const keyboardRef: any = useRef(null);
 
   useEffect(() => {
     const handleType = (event: any) => {
@@ -38,6 +39,7 @@ export default function Game() {
           setGameOver(true);
         }
       }
+      
       if (event.key === 'Backspace') {
         setCurrentGuess(currentGuess.slice(0, -1));
         return;
@@ -84,30 +86,85 @@ export default function Game() {
   const modalHandler = () => {
     setShowModal((prev) => !prev);
   };
-  const startNewGame = () =>{
-    setCurrentGuess('')
-    setGuesses(Array(6).fill(null))
-    setGameOver(false)
-    fetchWord()
+  const startNewGame = () => {
+    setCurrentGuess('');
+    setGuesses(Array(6).fill(null));
+    setGameOver(false);
+    fetchWord();
     buttonRef.current.blur();
-}
+  };
 
-const handleKeyboard =()=>{
-  keyboardRef.current.focus()
-}
+  const handleKeyboard = () => {
+    keyboardRef.current.focus();
+  };
 
-const handleShowTheSolution = ()=>{
-  setShowTheSolution(prev=> true )
-  setTimeout(()=>setShowTheSolution(false), 200)
-}
+  const handleShowTheSolution = () => {
+    setShowTheSolution((prev) => true);
+    setTimeout(() => setShowTheSolution(false), 200);
+  };
+
+  // virtual keyboard functions
+  const onChange = (input: any) => {
+    console.log('Input changed', input);
+  };
+
+  const onKeyPress = (button: any) => {
+    console.log('Button pressed', button);
+  
+    if (gameOver) {
+      return;
+    }
+    if (button === '{enter}') {
+      if (currentGuess.length !== 5) {
+        return;
+      }
+      const newGuesses = [...guesses];
+      // The findIndex() method returns the index of THEelement in an array that satisfies the provided testing function
+      newGuesses[guesses.findIndex((element) => element == null)] =
+        currentGuess;
+      setGuesses(newGuesses);
+      setCurrentGuess('');
+
+      const isCorrect = solution === currentGuess;
+      if (isCorrect) {
+        setGameOver(true);
+      }
+     
+    }
+    if (button === '{bksp}') {
+      setCurrentGuess(currentGuess.slice(0, -1));
+      return;
+    }
+    if (currentGuess.length >= 5) {
+      return;
+    }
+    const isLetter = button.match(/^[A-Z]{1}$/) != null;
+    if(isLetter){
+      setCurrentGuess(prev=>prev+button)
+    }
+
+    
+  };
+
   return (
     <>
       {/* <p className="text-white" onClick={lklk}>
         Click
       </p> */}
-      {gameOver ? <p className='p-4'>CONGRATULATION, YOU WON!! The solution word is: {solution}</p> : ''}
-      <h2 onClick={handleShowTheSolution} className="mb-4 p-2 rounded bg-green-800 transition hover:bg-green-600">Click here for solution:</h2>
-      {showTheSolution?<p className='py-4'>{solution}</p>:null}
+      {gameOver ? (
+        <p className="p-4">
+          CONGRATULATION, YOU WON!! The solution word is: {solution}
+        </p>
+      ) : (
+        ''
+      )}
+      <h2
+        onClick={handleShowTheSolution}
+        className="mb-4 p-2 rounded bg-green-800 transition hover:bg-green-600"
+      >
+        Click here for solution:
+      </h2>
+      {showTheSolution ? <p className="py-4">{solution}</p> : null}
       {guesses.map((guess, i) => {
         const isCurrentGuess =
           i === guesses.findIndex((element) => element == null); // this will evelute to true or false
@@ -123,12 +180,20 @@ const handleShowTheSolution = ()=>{
           />
         );
       })}
-{/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
+      {/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
+      <div className="text-black mt-3">
+        <Keyboard
+          layoutName="shift"
+          onChange={onChange}
+          onKeyPress={onKeyPress}
+        />
+      </div>
 
       <button
-    ref={buttonRef}
-      onClick={startNewGame}
-       className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 ">
+        ref={buttonRef}
+        onClick={startNewGame}
+        className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 "
+      >
         Start a new game
       </button>
       <button
@@ -141,7 +206,6 @@ const handleShowTheSolution = ()=>{
       {/* <input className='mt-8'
       ref={keyboardRef}
       ></input> */}
-
     </>
   );
 }
