@@ -131,6 +131,15 @@ export default function Game() {
       if (currentGuess.length !== 5) {
         return;
       }
+      const isWord =    allWords.some((el)=> el==currentGuess)
+      if(!isWord){
+       setTypoError(true)
+       setTimeout(()=>{
+         setTypoError(false)
+       }, 2000)
+       return
+      }
+
       const newGuesses = [...guesses];
       // The findIndex() method returns the index of THEelement in an array that satisfies the provided testing function
       newGuesses[guesses.findIndex((element) => element == null)] =

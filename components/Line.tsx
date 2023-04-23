@@ -52,7 +52,7 @@ type props = {
         onClick={handleFocus}
         ref={refrence}
           key={i}
-          className={`${tile} w-16 h-16 border flex justify-center items-center uppercase text-xl`}
+          className={`${tile} w-12 h-12 border flex justify-center items-center uppercase text-xl`}
           tabIndex={i}
         >
           {char}
