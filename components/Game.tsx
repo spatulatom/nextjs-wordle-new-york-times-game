@@ -2,6 +2,7 @@ import React from 'react';
 import { useEffect, useState, useRef } from 'react';
 import Line from './Line';
 import Modal from './Modal';
+import TypoError from './TypoError';
 import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
@@ -13,6 +14,8 @@ export default function Game() {
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showTheSolution, setShowTheSolution] = useState(false);
+  const [allWords, setAllWords] = useState([])
+  const [typoError, setTypoError] = useState(false)
 
   const buttonRef: any = useRef(null);
   const keyboardRef: any = useRef(null);
@@ -27,6 +30,16 @@ export default function Game() {
         if (currentGuess.length !== 5) {
           return;
         }
+
+     const isWord =    allWords.some((el)=> el==currentGuess)
+     if(!isWord){
+      setTypoError(true)
+      setTimeout(()=>{
+        setTypoError(false)
+      }, 2000)
+      return
+     }
+     
         const newGuesses = [...guesses];
         // The findIndex() method returns the index of THEelement in an array that satisfies the provided testing function
         newGuesses[guesses.findIndex((element) => element == null)] =
@@ -67,7 +80,7 @@ export default function Game() {
   const fetchWord = async () => {
     const response = await fetch('api/hello');
     const words = await response.json();
-
+    setAllWords(words.words)
     // Math.random gives us number 0 to 1, multipy by how many word there are, and floor that
     // 2.5 would be 2
     const randomWord =
@@ -204,6 +217,8 @@ export default function Game() {
         Solution:
       </h2>
       {showTheSolution ? <p className="py-4">{solution}</p> : null}
+
+      {typoError&&<TypoError currentGuess={currentGuess}/>}
 
       {/* <input className='mt-8'
       ref={keyboardRef}
