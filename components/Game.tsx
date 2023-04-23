@@ -63,7 +63,7 @@ export default function Game() {
       }
 
       // to prevent other keys than letters
-      const isLetter = event.key.match(/^[a-z]{1}$/) != null;
+      const isLetter = event.key.match(/^[a-z-żźćńółęąś]{1}$/) != null;
       if (isLetter) {
         // the array elemments are uppercase so we need to change key events as well
         // othwerwise styling comparison in Line component is not working a === A is false
@@ -160,7 +160,7 @@ export default function Game() {
     if (currentGuess.length >= 5) {
       return;
     }
-    const isLetter = button.match(/^[a-z]{1}$/) != null;
+    const isLetter = button.match(/^[a-z-żźćńółęąś]{1}$/) != null;
     if(isLetter){
       setCurrentGuess(prev=>prev+button)
     }
@@ -202,6 +202,22 @@ export default function Game() {
           layoutName="default"
           onChange={onChange}
           onKeyPress={onKeyPress}
+          layout={{
+            default: [
+              " ą ć ę ł ń ó ś ź ż ",
+              " q w e r t y u i o p ",
+              " a s d f g h j k ",
+              " z x c v b n m l ",
+              "{bksp} {enter}"
+            ],
+            shift: [
+              "~ ! @ # $ % ^ & * ( ) _ + {bksp}",
+              "{tab} Q W E R T Y U I O P { } |",
+              '{lock} A S D F G H J K L : " {enter}',
+              "{shift} Z X C V B N M < > ? {shift}",
+              ".com @ {space}"
+            ]
+          }}
         />
       </div>
 
