@@ -22,7 +22,7 @@ type props = {
       
       // console.log('hrtr', char) // when char ='' this code will evalute to undefinded
       
-      let tile = 'bg-black';
+      let tile = 'bg-gray-800';
       if (isGuessSubmitted) {
         if (char === solution[i]) {
           console.log('here 1');
