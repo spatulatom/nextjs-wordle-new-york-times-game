@@ -219,13 +219,13 @@ export default function Game() {
         How To Play
       </button>
       {showModal && <Modal modalHandler={modalHandler} />}
-      <h2
+      {/* <h2
         onClick={handleShowTheSolution}
         className="mt-8 p-2 rounded bg-green-800 transition hover:bg-green-600"
       >
         Solution:
       </h2>
-      {showTheSolution ? <p className="py-4">{solution}</p> : null}
+      {showTheSolution ? <p className="py-4">{solution}</p> : null} */}
 
       {typoError&&<TypoError currentGuess={currentGuess}/>}
 
