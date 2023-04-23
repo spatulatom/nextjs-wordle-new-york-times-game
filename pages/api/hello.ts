@@ -13,6 +13,7 @@ export default function handler(
 }
 
 const words =[
+  'ARISE',
   'ALBUM',
   'HINGE',
   'MONEY',
