@@ -158,13 +158,7 @@ export default function Game() {
       ) : (
         ''
       )}
-      <h2
-        onClick={handleShowTheSolution}
-        className="mb-4 p-2 rounded bg-green-800 transition hover:bg-green-600"
-      >
-        Click here for solution:
-      </h2>
-      {showTheSolution ? <p className="py-4">{solution}</p> : null}
+     
       {guesses.map((guess, i) => {
         const isCurrentGuess =
           i === guesses.findIndex((element) => element == null); // this will evelute to true or false
@@ -203,6 +197,14 @@ export default function Game() {
         How To Play
       </button>
       {showModal && <Modal modalHandler={modalHandler} />}
+      <h2
+        onClick={handleShowTheSolution}
+        className="mt-8 p-2 rounded bg-green-800 transition hover:bg-green-600"
+      >
+        Solution:
+      </h2>
+      {showTheSolution ? <p className="py-4">{solution}</p> : null}
+
       {/* <input className='mt-8'
       ref={keyboardRef}
       ></input> */}
