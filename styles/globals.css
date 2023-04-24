@@ -46,6 +46,11 @@ input {
   width: calc(100% - 20px);
 }
 
+.simple-keyboard.hg-layout-default .hg-button{
+background: #1f2937;
+color: white
+}
+
 .simple-keyboard.hg-layout-default .hg-button.hg-green {
   background: #4ade80;
   color: white;

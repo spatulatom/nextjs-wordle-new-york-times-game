@@ -198,20 +198,20 @@ export default function Game() {
       <button
         ref={buttonRef}
         onClick={startNewGame}
-        className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 "
+        className="focus:disabled p-2 mt-8 bg-gray-500 rounded-sm hover:bg-gray-600 z-30 relative transition duration-500 "
       >
         Start a new game
       </button>
       <button
         onClick={modalHandler}
-        className="p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 "
+        className="p-2 mt-8 bg-gray-500 rounded-sm hover:bg-gray-600 z-30 relative transition duration-500 "
       >
         How To Play
       </button>
       {showModal && <Modal modalHandler={modalHandler} />}
       <h2
         onClick={handleShowTheSolution}
-        className="mt-8 p-2 rounded bg-green-800 transition hover:bg-green-600"
+        className="mt-8 p-2 rounded bg-gray-500 transition hover:bg-gray-600"
       >
         Solution:
       </h2>
