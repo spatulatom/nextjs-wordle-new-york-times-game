@@ -72,6 +72,7 @@ export default function VirtualKeyboard({
         onKeyPress={onKeyPress}
         layout={{
           default: [
+            'ą ć ę ł ń ó ś ź ż',
             `${q} w e r t y u i o p`,
             'a s d f g h j k',
             'z x c v b n m l',
