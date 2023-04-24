@@ -3,8 +3,8 @@ import { useEffect, useState, useRef } from 'react';
 import Line from './Line';
 import Modal from './Modal';
 import TypoError from './TypoError';
-import Keyboard from 'react-simple-keyboard';
-import 'react-simple-keyboard/build/css/index.css';
+import VirtualKeyboard from './VirtualKeyboard';
+
 
 export default function Game() {
   const [solution, setSolution] = useState('');
@@ -117,9 +117,9 @@ export default function Game() {
   };
 
   // virtual keyboard functions
-  const onChange = (input: any) => {
-    console.log('Input changed', input);
-  };
+  // const onChange = (input: any) => {
+  //   console.log('Input changed', input);
+  // };
 
   const onKeyPress = (button: any) => {
     console.log('Button pressed', button);
@@ -194,29 +194,7 @@ export default function Game() {
         );
       })}
       {/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
-      <div className="text-black mt-6 w-screen md:w-6/12">
-        <Keyboard
-          layoutName="default"
-          onChange={onChange}
-          onKeyPress={onKeyPress}
-          layout={{
-            default: [
-              'q w e r t y u i o p',
-              'a s d f g h j k',
-              'z x c v b n m l',
-              '{enter} {bksp}',
-            ],
-            shift: [
-              '~ ! @ # $ % ^ & * ( ) _ + {bksp}',
-              '{tab} Q W E R T Y U I O P { } |',
-              '{lock} A S D F G H J K L : " {enter}',
-              '{shift} Z X C V B N M < > ? {shift}',
-              '.com @ {space}',
-            ],
-          }}
-        />
-      </div>
-
+  <VirtualKeyboard onKeyPress={onKeyPress} guesses={guesses}/>
       <button
         ref={buttonRef}
         onClick={startNewGame}
