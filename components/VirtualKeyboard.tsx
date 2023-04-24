@@ -14,7 +14,7 @@ export default function VirtualKeyboard({
   solution,
 }: props) {
   const greens: any = [];
-  const yellows: any = [];
+  let yellows: any = [];
   const grays: any = [];
   const WORD_LENGTH = 5;
   console.log('GUESSES', guesses);
@@ -29,6 +29,14 @@ export default function VirtualKeyboard({
       if (char === solution[i]) {
         console.log('loop2');
         greens.push(char);
+        if(yellows.includes(char)){
+          console.log('hereEEEEE',char)
+          
+         const newArray =  yellows.filter((letter:any)=> {return letter !== char})
+         yellows = [...newArray]
+
+           
+        }
       } else if (solution.includes(char)) {
         console.log('LOOP3');
         if (greens.includes(char)) {
@@ -51,21 +59,21 @@ export default function VirtualKeyboard({
     },
     {
       class: 'hg-yellow',
-      buttons: '',
+      buttons: '  ',
     },
     {
       class: 'hg-gray',
-      buttons: '',
+      buttons: '   ',
     },
   ];
   //   const newGuess = guess.split('').join(' ');
-  console.log('greens', greens);
+  console.log('greens', greens, 'yellows', yellows);
   themes[0].buttons = greens.join(' ');
   themes[1].buttons = yellows.join(' ');
   themes[2].buttons = grays.join(' ');
 
   return (
-    <div className="text-black mt-6 w-screen md:w-6/12">
+    <div className="text-black mt-6 px-2 w-screen md:w-8/12">
       <Keyboard
         layoutName="default"
         //   onChange={onChange}
