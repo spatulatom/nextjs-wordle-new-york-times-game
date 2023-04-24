@@ -28,7 +28,10 @@ console.log('GUESSES', guesses)
         greens.push(char);
       } else if (solution.includes(char)) {
         console.log('LOOP3')
-        yellows.push(char);
+        if(greens.includes(char)){
+          return
+        }else{
+        yellows.push(char)}
       } else {
         console.log('LOOP4')
         grays.push(char);
