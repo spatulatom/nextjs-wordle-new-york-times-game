@@ -49,6 +49,12 @@ export default function Game() {
 
         const isCorrect = solution === currentGuess;
         if (isCorrect) {
+          const newGuesses = [...guesses];
+          // The findIndex() method returns the index of THEelement in an array that satisfies the provided testing function
+          newGuesses[guesses.findIndex((element) => element == null)] =
+            currentGuess;
+          setGuesses(newGuesses);
+          setCurrentGuess('');
           setGameOver(true);
         }
       }
@@ -149,6 +155,12 @@ export default function Game() {
 
       const isCorrect = solution === currentGuess;
       if (isCorrect) {
+        const newGuesses = [...guesses];
+      // The findIndex() method returns the index of THEelement in an array that satisfies the provided testing function
+      newGuesses[guesses.findIndex((element) => element == null)] =
+        currentGuess;
+      setGuesses(newGuesses);
+      setCurrentGuess('');
         setGameOver(true);
       }
     }
