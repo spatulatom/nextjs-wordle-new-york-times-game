@@ -5,35 +5,39 @@ import 'react-simple-keyboard/build/css/index.css';
 type props = {
   onKeyPress: any;
   guesses: any[];
-  solution: string
+  solution: string;
 };
 
-export default function VirtualKeyboard({ onKeyPress, guesses, solution }: props) {
-
-  const greens:any = [];
-  const yellows:any = [];
-  const grays:any = [];
+export default function VirtualKeyboard({
+  onKeyPress,
+  guesses,
+  solution,
+}: props) {
+  const greens: any = [];
+  const yellows: any = [];
+  const grays: any = [];
   const WORD_LENGTH = 5;
-console.log('GUESSES', guesses)
+  console.log('GUESSES', guesses);
 
   guesses.map((guess) => {
-    console.log('LOOP1')
-    if(guess==null){
-     return  guess = ''
+    console.log('LOOP1');
+    if (guess == null) {
+      return (guess = '');
     }
     for (let i = 0; i < WORD_LENGTH; i++) {
       const char = guess[i];
       if (char === solution[i]) {
-        console.log('loop2')
+        console.log('loop2');
         greens.push(char);
       } else if (solution.includes(char)) {
-        console.log('LOOP3')
-        if(greens.includes(char)){
-          return
-        }else{
-        yellows.push(char)}
+        console.log('LOOP3');
+        if (greens.includes(char)) {
+          return;
+        } else {
+          yellows.push(char);
+        }
       } else {
-        console.log('LOOP4')
+        console.log('LOOP4');
         grays.push(char);
       }
     }
@@ -54,8 +58,8 @@ console.log('GUESSES', guesses)
       buttons: '',
     },
   ];
-//   const newGuess = guess.split('').join(' ');
-console.log('greens', greens)
+  //   const newGuess = guess.split('').join(' ');
+  console.log('greens', greens);
   themes[0].buttons = greens.join(' ');
   themes[1].buttons = yellows.join(' ');
   themes[2].buttons = grays.join(' ');
