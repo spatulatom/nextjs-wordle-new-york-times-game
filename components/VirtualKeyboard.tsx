@@ -33,7 +33,7 @@ export default function VirtualKeyboard({
           console.log('hereEEEEE',char)
           
          const newArray =  yellows.filter((letter:any)=> {return letter !== char})
-         yellows = [...newArray]
+         yellows = newArray
 
            
         }
