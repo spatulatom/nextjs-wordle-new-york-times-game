@@ -13,7 +13,7 @@ export default function VirtualKeyboard({
   guesses,
   solution,
 }: props) {
-  const greens: any = [];
+  let greens: any = [];
   let yellows: any = [];
   const grays: any = [];
   const WORD_LENGTH = 5;
@@ -28,14 +28,16 @@ export default function VirtualKeyboard({
       const char = guess[i];
       if (char === solution[i]) {
         console.log('loop2');
-        greens.push(char);
-        if(yellows.includes(char)){
-          console.log('hereEEEEE',char)
-          
-         const newArray =  yellows.filter((letter:any)=> {return letter !== char})
-         yellows = newArray
+        const neeGreen = [...greens]
+        neeGreen.push(char)
+        greens =  neeGreen
+        if (yellows.includes(char)) {
+          console.log('hereEEEEE', char);
 
-           
+          const newArray = yellows.filter((letter: any) => {
+            return letter !== char;
+          });
+          yellows = newArray;
         }
       } else if (solution.includes(char)) {
         console.log('LOOP3');
