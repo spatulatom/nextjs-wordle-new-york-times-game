@@ -8,7 +8,10 @@ import VirtualKeyboard from './VirtualKeyboard';
 
 export default function Game() {
   const [solution, setSolution] = useState('');
-  //   why nulls not empty strings in the first place
+  
+  // Array of '' would be ok as well, think to note is that 
+  // we are going ot have two loops in the app one with map(), 
+  // second 'for' loop and 
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
@@ -170,15 +173,13 @@ export default function Game() {
 
   return (
     <>
-      {/* <p className="text-white" onClick={lklk}>
-        Click
-      </p> */}
+    
       {gameOver ? (
         <p className="p-4">
           CONGRATULATION, YOU WON!! The solution word is: {solution}
         </p>
       ) : (
-        ''
+        null
       )}
 
       {guesses.map((guess, i) => {
