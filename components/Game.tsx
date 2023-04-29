@@ -5,19 +5,22 @@ import Modal from './Modal';
 import TypoError from './TypoError';
 import VirtualKeyboard from './VirtualKeyboard';
 
+type Data = {
+  words: Array<string>;
+};
 
 export default function Game() {
   const [solution, setSolution] = useState('');
-  
-  // Array of '' would be ok as well, think to note is that 
-  // we are going ot have two loops in the app one with map(), 
-  // second 'for' loop and 
+
+  // Array of '' would be ok as well, note that
+  // we are going ot have two loops in the app one with map(),
+  // second 'for' loop in the line
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [showTheSolution, setShowTheSolution] = useState(false);
-  const [allWords, setAllWords] = useState([]);
+  const [allWords, setAllWords] = useState<Array<string> | []>([]);
   const [typoError, setTypoError] = useState(false);
 
   const buttonRef: any = useRef(null);
@@ -52,7 +55,6 @@ export default function Game() {
 
         const isCorrect = solution === currentGuess;
         if (isCorrect) {
-        
           setGameOver(true);
         }
       }
@@ -83,7 +85,7 @@ export default function Game() {
 
   const fetchWord = async () => {
     const response = await fetch('api/hello');
-    const words = await response.json();
+    const words: Data = await response.json();
     setAllWords(words.words);
     // Math.random gives us number 0 to 1, multipy by how many word there are, and floor that
     // 2.5 would be 2
@@ -117,7 +119,7 @@ export default function Game() {
 
   const handleShowTheSolution = () => {
     setShowTheSolution((prev) => true);
-    setTimeout(() => setShowTheSolution(false), 200);
+    setTimeout(() => setShowTheSolution(false), 400);
   };
 
   // virtual keyboard functions
@@ -125,7 +127,7 @@ export default function Game() {
   //   console.log('Input changed', input);
   // };
 
-  const onKeyPress = (button:string) => {
+  const onKeyPress = (button: string) => {
     console.log('Button pressed', button);
 
     if (gameOver) {
@@ -153,8 +155,8 @@ export default function Game() {
 
       const isCorrect = solution === currentGuess;
       if (isCorrect) {
-        // tehnically we dont need 
-     
+        // tehnically we dont need
+
         setGameOver(true);
       }
     }
@@ -173,14 +175,11 @@ export default function Game() {
 
   return (
     <>
-    
       {gameOver ? (
         <p className="p-4">
           CONGRATULATION, YOU WON!! The solution word is: {solution}
         </p>
-      ) : (
-        null
-      )}
+      ) : null}
 
       {guesses.map((guess, i) => {
         const isCurrentGuess =
@@ -198,7 +197,11 @@ export default function Game() {
         );
       })}
       {/* <button className="focus:disabled p-2 mt-8 bg-green-800 rounded-sm hover:bg-green-400 z-30 relative transition duration-500 " onClick={handleKeyboard}>Show Keyboard</button> */}
-  <VirtualKeyboard onKeyPress={onKeyPress} guesses={guesses} solution={solution}/>
+      <VirtualKeyboard
+        onKeyPress={onKeyPress}
+        guesses={guesses}
+        solution={solution}
+      />
       <button
         ref={buttonRef}
         onClick={startNewGame}
