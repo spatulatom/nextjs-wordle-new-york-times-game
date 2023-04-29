@@ -2,8 +2,8 @@ import { useRef } from "react";
 
 
 type props = {
-    guess: any;
-    isGuessSubmitted: any;
+    guess: string;
+    isGuessSubmitted: boolean;
     solution: string;
   };
   

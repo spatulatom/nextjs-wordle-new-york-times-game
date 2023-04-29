@@ -1,7 +1,7 @@
 import React from 'react'
 import Image from 'next/image';
 type props = {
-    modalHandler: any
+    modalHandler: ()=>void
 }
 export default function Modal({modalHandler}: props) {
   return (

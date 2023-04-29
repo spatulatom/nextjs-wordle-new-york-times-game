@@ -21,7 +21,7 @@ export default function Game() {
   const keyboardRef: any = useRef(null);
 
   useEffect(() => {
-    const handleType = (event: any) => {
+    const handleTyping = (event: KeyboardEvent) => {
       if (gameOver) {
         return;
       }
@@ -72,10 +72,10 @@ export default function Game() {
       }
     };
 
-    window.addEventListener('keydown', handleType);
+    window.addEventListener('keydown', handleTyping);
 
     // on onmount:
-    return () => window.removeEventListener('keydown', handleType);
+    return () => window.removeEventListener('keydown', handleTyping);
   }, [currentGuess]);
 
   const fetchWord = async () => {
@@ -122,7 +122,7 @@ export default function Game() {
   //   console.log('Input changed', input);
   // };
 
-  const onKeyPress = (button: any) => {
+  const onKeyPress = (button:string) => {
     console.log('Button pressed', button);
 
     if (gameOver) {

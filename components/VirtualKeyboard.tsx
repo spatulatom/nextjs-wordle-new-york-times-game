@@ -3,8 +3,8 @@ import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
 type props = {
-  onKeyPress: any;
-  guesses: any[];
+  onKeyPress: (e:string)=>void
+  guesses: string[];
   solution: string;
 };
 
@@ -13,9 +13,9 @@ export default function VirtualKeyboard({
   guesses,
   solution,
 }: props) {
-  let greens: any = [];
-  let yellows: any = [];
-  const grays: any = [];
+  let greens: string[] = [];
+  let yellows: string[] = [];
+  const grays: string[] = [];
   const WORD_LENGTH = 5;
   console.log('GUESSES', guesses);
 
@@ -28,16 +28,18 @@ export default function VirtualKeyboard({
       const char = guess[i];
       if (char === solution[i]) {
         console.log('loop2');
-        const neeGreen = [...greens]
-        neeGreen.push(char)
-        greens =  neeGreen
+        // const neeGreen = [...greens]
+        // neeGreen.push(char)
+        greens =  [...greens,char]
         if (yellows.includes(char)) {
           console.log('hereEEEEE', char);
 
-          const newArray = yellows.filter((letter: any) => {
+          // const newArray = yellows.filter((letter: any) => {
+          //   return letter !== char;
+          // });
+          yellows = [...yellows.filter((letter: string) => {
             return letter !== char;
-          });
-          yellows = newArray;
+          })]
         }
       } else if (solution.includes(char)) {
         console.log('LOOP3');
