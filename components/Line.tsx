@@ -1,4 +1,4 @@
-import { ReactElement } from "react";
+import { ReactElement } from 'react';
 
 type props = {
   guess: string;
@@ -12,13 +12,12 @@ export default function Line({ guess, isGuessSubmitted, solution }: props) {
   // it - remeber map() accutally returns an array of JSX elements
   let tiles: ReactElement[] = [];
 
-
   // if guess is null it will be turned into empty string '' on props: guess?? ''so
   // for loop can loop through ''[0], ''[1]... and not null[0], null[1]
   for (let i = 0; i < WORD_LENGTH; i++) {
     const char = guess[i];
 
-    // console.log('hrtr', char) 
+    // console.log('hrtr', char)
     // when char ='' this code will evalute to undefinded
 
     let tile = 'bg-gray-800';
@@ -32,16 +31,17 @@ export default function Line({ guess, isGuessSubmitted, solution }: props) {
       }
     }
 
-  // not muttable update as oppose to tiles.push(div here)
-   tiles = [...tiles, (
+    // not muttable update as oppose to tiles.push(div here)
+    tiles = [
+      ...tiles,
       <div
         key={i}
         className={`${tile} w-12 h-12 border flex justify-center items-center uppercase text-xl`}
         tabIndex={i}
       >
         {char}
-      </div>
-    )]
+      </div>,
+    ];
   }
 
   return (

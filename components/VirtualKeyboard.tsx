@@ -3,7 +3,7 @@ import Keyboard from 'react-simple-keyboard';
 import 'react-simple-keyboard/build/css/index.css';
 
 type props = {
-  onKeyPress: (e:string)=>void
+  onKeyPress: (e: string) => void;
   guesses: string[];
   solution: string;
 };
@@ -30,16 +30,18 @@ export default function VirtualKeyboard({
         console.log('loop2');
         // const neeGreen = [...greens]
         // neeGreen.push(char)
-        greens =  [...greens,char]
+        greens = [...greens, char];
         if (yellows.includes(char)) {
           console.log('hereEEEEE', char);
 
           // const newArray = yellows.filter((letter: any) => {
           //   return letter !== char;
           // });
-          yellows = [...yellows.filter((letter: string) => {
-            return letter !== char;
-          })]
+          yellows = [
+            ...yellows.filter((letter: string) => {
+              return letter !== char;
+            }),
+          ];
         }
       } else if (solution.includes(char)) {
         console.log('LOOP3');
