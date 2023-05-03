@@ -23,6 +23,7 @@ export default function Game() {
   const [allWords, setAllWords] = useState<Array<string> | []>([]);
   const [typoError, setTypoError] = useState(false);
 
+  // add types
   const buttonRef: any = useRef(null);
   const keyboardRef: any = useRef(null);
 
