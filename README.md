@@ -1,4 +1,4 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+See the deployed game on Vercel <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank">
 
 ## Getting Started
 
