@@ -1,3 +1,5 @@
+## Play the Game Online
+
 See the deployed game on Vercel <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> here <a>
 
 ## Getting Started
