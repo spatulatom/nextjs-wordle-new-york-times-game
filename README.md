@@ -12,10 +12,11 @@
 
 ## About The Project
 
-This repository contains source code of <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> 'My Wordle' <a> - an imitation of <a
+This repository contains source code of <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> 'My Wordle' <a> (- an imitation of <a
           href="https://www.nytimes.com/games/wordle/index.html"
-          target="_blank"> Wordle </a>, a popular guessing game:
-</br>
+          target="_blank"> Wordle </a>, a popular guessing game):
+<br/>
+<br/>
 
 ![Product Name Screen Shot](public/wordle.png)
 
