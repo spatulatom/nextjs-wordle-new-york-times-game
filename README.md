@@ -1,24 +1,34 @@
+<!-- TABLE OF CONTENTS -->
+<details>
+  <summary>Table of Contents</summary>
+  <ol>
+    <li><a href="#about-the-project">About The Project</a></li>
+    <li><a href="#play-the-game">Play the Game</a></li>
+    <li><a href="#built-with">Built With</a></li>
+      <li><a href="#getting-started">Getting Started</a></li>
+        <li><a href="#learn-more">Learn More</a></li>
+  </ol>
+</details>
+
 ## About The Project
+
 This repository contains source code of <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> 'My Wordle' <a> - an imitation of <a
           href="https://www.nytimes.com/games/wordle/index.html"
           target="_blank"> Wordle </a>, a popular guessing game:
-          </br>
+</br>
 
 ![Product Name Screen Shot](public/wordle.png)
 
+## Play the Game
 
-## Play the Game 
+'My Wordle' deployed on Vercel <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> here <a>
 
-'My Wordle' deployed  on Vercel <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> here <a>
-
-### Built With
+## Built With
 
 - HTML,
 - Tailwind CSS,
 - Next.js,
 - TypeScript.
-
-
 
 ## Getting Started
 
