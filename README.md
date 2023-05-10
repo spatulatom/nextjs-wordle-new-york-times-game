@@ -1,6 +1,23 @@
-## Play the Game Online
+## About The Project
+This repository contains source code of a 'My Wordle' - an imitation of <a
+          href="https://www.nytimes.com/games/wordle/index.html"
+          target="_blank"> Wordle </a>, a popular guessing game.
 
-Deployed game on Vercel <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> here <a>
+![Product Name Screen Shot](public/wordle.png)
+
+
+## Play the Game 
+
+'My Wordle' deployed  on Vercel <a href="https://nextjs-wordle-new-york-times-game.vercel.app/" targt="_blank"> here <a>
+
+### Built With
+
+- HTML,
+- Tailwind CSS,
+- Next.js,
+- TypeScript,
+
+
 
 ## Getting Started
 
