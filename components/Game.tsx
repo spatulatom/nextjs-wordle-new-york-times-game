@@ -80,7 +80,7 @@ export default function Game() {
 
     window.addEventListener('keydown', handleTyping);
 
-    // on on mount:
+    // clean up:
     return () => window.removeEventListener('keydown', handleTyping);
   }, [currentGuess]);
 
