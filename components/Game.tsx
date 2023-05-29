@@ -14,7 +14,8 @@ export default function Game() {
 
   // Array of '' would be ok as well, note that
   // we are going ot have two loops in the app one with map(),
-  // second 'for' loop in the line
+  // second 'for' loop in the line so we need to change null into ''
+  // otherwise for loop wont work
   const [guesses, setGuesses] = useState(Array(6).fill(null));
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
@@ -78,6 +79,8 @@ export default function Game() {
       }
     };
 
+    // event listener React way would also be suffucient but it need to be
+    // placed probably somewhere in the document directory to have the same effect like below
     window.addEventListener('keydown', handleTyping);
 
     // clean up:
