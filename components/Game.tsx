@@ -17,6 +17,7 @@ export default function Game() {
   // second 'for' loop in the line so we need to change null into ''
   // otherwise for loop wont work
   const [guesses, setGuesses] = useState(Array(6).fill(null));
+  // const [guesses, setGuesses] = useState(Array(6).fill(''));
   const [currentGuess, setCurrentGuess] = useState('');
   const [gameOver, setGameOver] = useState(false);
   const [showModal, setShowModal] = useState(false);
