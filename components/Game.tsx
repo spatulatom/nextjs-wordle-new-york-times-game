@@ -126,7 +126,7 @@ export default function Game() {
     setTimeout(() => setShowTheSolution(false), 400);
   };
 
-  // virtual keyboard functions
+  // VIRTUAL KEYBOARD
   // const onChange = (input: any) => {
   //   console.log('Input changed', input);
   // };
