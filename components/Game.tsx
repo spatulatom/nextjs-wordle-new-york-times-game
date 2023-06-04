@@ -34,6 +34,9 @@ export default function Game() {
       if (gameOver) {
         return;
       }
+      // if (event.key === 'Enter') {
+      //   alert('helo');
+      // }
 
       if (event.key === 'Enter') {
         if (currentGuess.length !== 5) {
@@ -77,7 +80,9 @@ export default function Game() {
         // the array elemments are uppercase so we need to change key events as well
         // othwerwise styling comparison in Line component is not working a === A is false
         setCurrentGuess((oldGuess) => oldGuess + event.key);
+         console.log('CURRENT GUESS', currentGuess);
       }
+     
     };
 
     // event listener React way would also be suffucient but it need to be
@@ -87,6 +92,18 @@ export default function Game() {
     // clean up:
     return () => window.removeEventListener('keydown', handleTyping);
   }, [currentGuess]);
+
+  // so in here I ma getting curren version of the state currentGuess yet
+  // above in useEffect with the same dependecies I dont get current state
+  // but one letter less, why? Shouldnt i get the latest version of the 
+  // state in useEffect? I think its differnt becuase even in useEffect above
+// where I set up currentGuess I am using oldGuess(prevstate) to do it for the 
+// exact reason becuse state there is one behind - so in other words if you 
+// setting up state in useEffect and also want to get its current version it
+// can not be done in one useEffect 
+  useEffect(()=>{
+    console.log('HEREEEEE', currentGuess)
+   },[currentGuess])
 
   const fetchWord = async () => {
     const response = await fetch('api/hello');
@@ -101,10 +118,9 @@ export default function Game() {
 
   useEffect(() => {
     fetchWord();
+    
   }, []);
-  const lklk = () => {
-    fetchWord();
-  };
+
 
   //rules of the game modal handler
   const modalHandler = () => {
