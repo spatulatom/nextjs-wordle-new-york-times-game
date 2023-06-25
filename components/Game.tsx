@@ -205,7 +205,7 @@ export default function Game() {
         return (
           // https://sebhastian.com/javascript-double-question-mark/?utm_content=cmp-truehttps://sebhastian.com/javascript-double-question-mark/?utm_content=cmp-true
           // Nullish Coalescing Operator
-          // The Nullish Coalescing Operator (??) is a relatively new addition to JavaScript, introduced 
+          // The Nullish Coalescing Operator (??) is a relatively new addition to JavaScript, introduced
           // in ECMAScript 2020. It is used to provide a default value for a variable if the value is null or undefined.
           // if guess is null it will be turned into empty string '' on props: guess?? ''
           <Line
