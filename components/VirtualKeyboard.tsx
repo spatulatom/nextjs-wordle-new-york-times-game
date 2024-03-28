@@ -20,7 +20,7 @@ export default function VirtualKeyboard({
   console.log('GUESSES', guesses);
 
   guesses.map((guess) => {
-    console.log('LOOP1');
+    // console.log('LOOP1');
     if (guess == null) {
       return (guess = '');
     }

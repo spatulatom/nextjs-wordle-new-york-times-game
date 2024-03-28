@@ -38,7 +38,7 @@ export default function Game() {
       //   alert('helo');
       // }
 
-      if (event.key === 'Enter') {
+      if (event.key === 'Enter'){
         if (currentGuess.length !== 5) {
           return;
         }
@@ -80,7 +80,7 @@ export default function Game() {
         // the array elemments are uppercase so we need to change key events as well
         // othwerwise styling comparison in Line component is not working a === A is false
         setCurrentGuess((oldGuess) => oldGuess + event.key);
-        console.log('CURRENT GUESS', currentGuess);
+        // console.log('CURRENT GUESS', currentGuess);
       }
     };
 
